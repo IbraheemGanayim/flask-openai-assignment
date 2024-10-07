@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000" # Map port 5000 inside the container to port 5000 on your local machine
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY} # Pass the API key from your environment
+      - FLASK_ENV=production # Set Flask environment to production
+    depends_on:
+      - db # Ensure Flask starts only after PostgreSQL is running
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: questions_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persist data across container restarts
+
+volumes:
+  postgres_data:
