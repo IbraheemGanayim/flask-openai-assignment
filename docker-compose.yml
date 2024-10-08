@@ -1,26 +1,26 @@
-version: "3"
+version: "3.8" # Specify the version of Docker Compose
 
 services:
-  web:
-    build: .
-    ports:
-      - "5000:5000" # Map port 5000 inside the container to port 5000 on your local machine
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY} # Pass the API key from your environment
-      - FLASK_ENV=production # Set Flask environment to production
-    depends_on:
-      - db # Ensure Flask starts only after PostgreSQL is running
-
+  # PostgreSQL Database Service
   db:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: example
-      POSTGRES_DB: questions_db
+    image: postgres:13 # Use the official PostgreSQL 13 image
+    container_name: insait-db # Name the container for easy reference
+    environment: # Environment variables to set up the PostgreSQL database
+      POSTGRES_USER: postgres # Default user for PostgreSQL
+      POSTGRES_PASSWORD: example # Password for the default PostgreSQL user
+      POSTGRES_DB: questions_db # Name of the database to be created
     ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data # Persist data across container restarts
+      - "5432:5432" # Expose PostgreSQL on port 5432 (default PostgreSQL port)
 
-volumes:
-  postgres_data:
+  # Flask Web Application Service
+  web:
+    build: . # Build the Flask app from the current directory using Dockerfile
+    container_name: insait-flask-app # Name the container for easy reference
+    depends_on:
+      - db # Ensure the 'db' service (PostgreSQL) starts before the web app
+    ports:
+      - "5000:5000" # Expose Flask on port 5000 (default Flask port)
+    environment: # Environment variables for the Flask app
+      - OPENAI_API_KEY=${OPENAI_API_KEY} # Pass the OpenAI API key from the environment variables (ensure it's set in your .env file)
+
+# Volumes and networks could be added below if needed for persistent storage or networking between services.
