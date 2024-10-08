@@ -1,8 +1,8 @@
-Flask
-SQLAlchemy
-psycopg2-binary
-openai
-alembic
-pytest
-python-dotenv
-Flask-SQLAlchemy
+Flask                    # Lightweight WSGI web application framework used for building the web app
+SQLAlchemy               # Python SQL toolkit and ORM (Object Relational Mapper) for interacting with databases
+psycopg2-binary          # PostgreSQL database adapter for Python (used by SQLAlchemy to connect to PostgreSQL)
+openai                   # Python client library for interacting with OpenAI's GPT models
+alembic                  # Lightweight database migration tool used alongside SQLAlchemy to manage schema changes
+pytest                   # Testing framework for writing and running unit tests
+python-dotenv            # Reads environment variables from a .env file (e.g., API keys, database credentials)
+Flask-SQLAlchemy         # Extension that integrates SQLAlchemy with Flask, making it easier to work with databases in Flask apps
