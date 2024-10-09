@@ -154,5 +154,5 @@ Feel free to reach out if you have any questions! 😊
 ---
 
 ### 🖥️ **Contact**
-- **GitHub**: [Ibraheem Ganayim](https://github.com/IbraheemGanayim)
+- **Linkedin**: [Ibraheem Ganayim](https://www.linkedin.com/in/ibraheemganayim/)
 - **Email**: Ganayim.Ibraheem@gmail.com
